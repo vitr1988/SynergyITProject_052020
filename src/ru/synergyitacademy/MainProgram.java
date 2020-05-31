@@ -20,12 +20,12 @@ public class MainProgram {
     }
 
     public static void printThisTextToConsole() throws Exception {
-        String name = "Test phrase";
+        String name = "Test phrase" + " and a lot of different text\n\tNew text";
+        System.out.println(name);
         String a;
         a = "Привет, друг!";
         String[] words = a.split(",");
 //        MainProgram.main(new String[]{name});
-
 
         int a1 = 1, a2 = 2, a3 = 3;
         int i = 0;
