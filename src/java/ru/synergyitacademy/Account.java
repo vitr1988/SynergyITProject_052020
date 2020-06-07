@@ -3,6 +3,7 @@ package ru.synergyitacademy;
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
+import java.util.Properties;
 
 public class Account {
 
@@ -15,6 +16,19 @@ public class Account {
     private Integer expirationPeriod = null;
     private boolean valid = false; // default for boolean and 0 for other one;
     private char value = '\u0000'; // default as 0
+
+    public static String bankName;
+
+    static {
+        Properties properties = new Properties();
+        try {
+            properties.load(Account.class.getResourceAsStream("/global.properties"));
+            bankName = (String) properties.get("bankName");
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     Account(){}
 
@@ -35,6 +49,7 @@ public class Account {
     }
 
     void withdraw(BigDecimal money) {
+        money = new BigDecimal("789");
         if (balance.compareTo(money) >= 0) { // balance is more or equal money
             balance = balance.subtract(money);
         }
@@ -43,8 +58,18 @@ public class Account {
         }
     }
 
-    String formattedBalance() {
+    public String changeOwner(String newClient) {
+        this.clientName = newClient;
+        newClient = "Vasya Pupkin";
+        return newClient;
+    }
+
+    protected String formattedBalance() {
         return decimalFormat.format(balance);
+    }
+
+    String formattedBalance(String format) { // overloding
+        return new DecimalFormat(format).format(balance);
     }
 
     void setBalance(BigDecimal money) {
@@ -77,5 +102,10 @@ public class Account {
 
     public void setCurrency(Currency currency) {
         this.currency = currency;
+    }
+
+    public static Account createAccountAndSetCurrency(Account account, Currency currency) {
+        account.setCurrency(currency);
+        return account;
     }
 }
