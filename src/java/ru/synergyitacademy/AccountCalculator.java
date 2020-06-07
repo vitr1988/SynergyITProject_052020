@@ -38,5 +38,38 @@ public class AccountCalculator {
                 Account.createAccountAndSetCurrency(account, Currency.DOLLARS);
 
 
+
+        Account businessAccount = new BusinessAccount();
+        businessAccount.setAccountNumber("454121651");
+        businessAccount.setClientName("Roga i kopyta");
+        businessAccount.setCurrency(Currency.RUBLES);
+        businessAccount.setBalance(new BigDecimal("1000000"));
+
+        businessAccount.withdraw(new BigDecimal("500000"));
+        businessAccount.deposit(new BigDecimal("200000"));
+
+        System.out.printf("Current balance of business account : %s %s\n", businessAccount.formattedBalance(), businessAccount.getCurrency());
+
+        ((BusinessAccount) businessAccount).blockBalance();
+        businessAccount.withdraw(new BigDecimal("200000"));
+
+        ((BusinessAccount) businessAccount).unblockBalance();
+        businessAccount.withdraw(new BigDecimal("200000"));
+
+        System.out.printf("Current balance of business account : %s %s\n", businessAccount.formattedBalance(), businessAccount.getCurrency());
+
+        ((BusinessAccount) businessAccount).blockBalance();
+        businessAccount.deposit(new BigDecimal("200000"));
+
+        PersonalAccount personalAccount = new PersonalAccount();
+        personalAccount.setAccountNumber("556456545");
+        personalAccount.setBalance(new BigDecimal("25000"));
+        Account[] accounts = new Account[] {businessAccount, anotherAccount, personalAccount};
+        for (Account acc : accounts) {
+            acc.withdraw(new BigDecimal("10000"));
+            System.out.printf("Current balance for account %s %s\n", acc.getAccountNumber(), acc.formattedBalance());
+        }
+
+
     }
 }

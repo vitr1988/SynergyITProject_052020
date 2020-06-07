@@ -30,7 +30,13 @@ public class Account {
         }
     }
 
-    Account(){}
+    {
+        // Логика инициализации для каждого создаваемого объекта
+    }
+
+    Account(){
+        this(null, null);
+    }
 
     Account(String accountNumber, String clientName) {
         this.accountNumber = accountNumber;
@@ -49,7 +55,7 @@ public class Account {
     }
 
     void withdraw(BigDecimal money) {
-        money = new BigDecimal("789");
+//        money = new BigDecimal("789"); // will not show at AccountCalculator
         if (balance.compareTo(money) >= 0) { // balance is more or equal money
             balance = balance.subtract(money);
         }
