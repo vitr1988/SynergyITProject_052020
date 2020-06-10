@@ -70,6 +70,8 @@ public class Account {
         return newClient;
     }
 
+
+
     protected String formattedBalance() {
         return decimalFormat.format(balance);
     }
@@ -113,5 +115,31 @@ public class Account {
     public static Account createAccountAndSetCurrency(Account account, Currency currency) {
         account.setCurrency(currency);
         return account;
+    }
+
+    public Account refresh() {
+        Account newAccount = new Account();
+        newAccount.setBalance(this.getBalance());
+        newAccount.setCurrency(this.getCurrency());
+        newAccount.setClientName(this.getClientName());
+        newAccount.setAccountNumber("4654113241534");
+        return newAccount;
+    }
+
+    public static Account refresh(Account account) {
+        return account.refresh();
+    }
+
+    @Override
+    public String toString() {
+        return "Account{" +
+                "accountNumber='" + accountNumber + '\'' +
+                ", clientName='" + clientName + '\'' +
+                ", balance=" + balance +
+                ", currency=" + currency +
+                ", expirationPeriod=" + expirationPeriod +
+                ", valid=" + valid +
+                ", value=" + value +
+                '}';
     }
 }
