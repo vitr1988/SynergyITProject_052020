@@ -1,4 +1,4 @@
-package ru.synergyitacademy.homework;
+package ru.synergyitacademy.homework.matrix;
 
 public class Matrix {
     //поля класса
