@@ -1,5 +1,6 @@
 package ru.synergyitacademy;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
@@ -21,13 +22,20 @@ public class Account {
 
     static {
         Properties properties = new Properties();
+        int a = 0;
         try {
             properties.load(Account.class.getResourceAsStream("/global.properties"));
             bankName = (String) properties.get("bankName");
         }
-        catch (Exception e) {
+        catch (IOException e) {
             e.printStackTrace();
+            a = -1;
         }
+        catch (IllegalArgumentException | NullPointerException e) {
+            e.printStackTrace();
+            a = -2;
+        }
+        int i = a + 1;
     }
 
     {
