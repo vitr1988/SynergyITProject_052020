@@ -20,21 +20,24 @@ public class Account {
 
     public static String bankName;
 
-    static {
+    {
         Properties properties = new Properties();
         int a = 0;
-        try {
+//        try {
             properties.load(Account.class.getResourceAsStream("/global.properties"));
             bankName = (String) properties.get("bankName");
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-            a = -1;
-        }
-        catch (IllegalArgumentException | NullPointerException e) {
-            e.printStackTrace();
-            a = -2;
-        }
+//        }
+//        catch (IOException e) {
+//            e.printStackTrace();
+//            a = -1;
+//        }
+//        catch (IllegalArgumentException | NullPointerException e) {
+//            e.printStackTrace();
+//            a = -2;
+//        }
+//        finally {
+//
+//        }
         int i = a + 1;
     }
 
@@ -42,16 +45,16 @@ public class Account {
         // Логика инициализации для каждого создаваемого объекта
     }
 
-    Account(){
+    Account() throws IOException {
         this(null, null);
     }
 
-    Account(String accountNumber, String clientName) {
+    Account(String accountNumber, String clientName) throws IOException {
         this.accountNumber = accountNumber;
         this.clientName = clientName;
     }
 
-    public Account(String accountNumber, String clientName, BigDecimal balance, Currency currency) {
+    public Account(String accountNumber, String clientName, BigDecimal balance, Currency currency) throws IOException {
         this.accountNumber = accountNumber;
         this.clientName = clientName;
         this.balance = balance;
@@ -126,12 +129,17 @@ public class Account {
     }
 
     public Account refresh() {
-        Account newAccount = new Account();
-        newAccount.setBalance(this.getBalance());
-        newAccount.setCurrency(this.getCurrency());
-        newAccount.setClientName(this.getClientName());
-        newAccount.setAccountNumber("4654113241534");
-        return newAccount;
+        try {
+            Account newAccount = new Account();
+            newAccount.setBalance(this.getBalance());
+            newAccount.setCurrency(this.getCurrency());
+            newAccount.setClientName(this.getClientName());
+            newAccount.setAccountNumber("4654113241534");
+            return newAccount;
+        }
+        catch (IOException e) {
+            return null;
+        }
     }
 
     public static Account refresh(Account account) {

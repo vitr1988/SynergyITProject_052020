@@ -1,5 +1,6 @@
 package ru.synergyitacademy;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 
 /**
@@ -9,7 +10,7 @@ public class BusinessAccount extends Account {
 
     private boolean changeBalance = true;
 
-    public BusinessAccount(){
+    public BusinessAccount() throws IOException {
         super(null, "");
     }
 

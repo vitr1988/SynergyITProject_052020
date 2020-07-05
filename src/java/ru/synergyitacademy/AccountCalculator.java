@@ -1,10 +1,11 @@
 package ru.synergyitacademy;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 
 public class AccountCalculator {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         Account account = new Account();
         account.setAccountNumber("545645645645");
         account.setClientName("Ivanov Vitalii");

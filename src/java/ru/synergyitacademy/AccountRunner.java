@@ -1,10 +1,11 @@
 package ru.synergyitacademy;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 
 public class AccountRunner {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         Account account = new PersonalAccount();
         account.setCurrency(Currency.RUBLES);
         account.setAccountNumber("5415315");

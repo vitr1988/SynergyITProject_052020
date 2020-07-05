@@ -1,8 +1,13 @@
 package ru.synergyitacademy;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 
 public class PersonalAccount extends Account {
+
+    public PersonalAccount() throws IOException {
+        super();
+    }
 
     public void bancruncy() {
         setBalance(BigDecimal.ZERO);
