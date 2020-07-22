@@ -6,6 +6,7 @@ public class ArrayListExample {
 
     public static void main(String[] args) {
         List<String> strList = new ArrayList<>(100); // list of 10 elements
+        List<Integer> integers = Arrays.asList(1, 2, 3);
         strList.add("Привет");
         for (int i = 0; i < 1200; i++) {
             strList.add(i + "");
